@@ -1,12 +1,16 @@
 import * as React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, StyleSheet } from 'react-native'
 
-const StateDataScreen = ({ navigation }) => {
+const StateDataScreen = ({ navigation, route }) => {
     return (
         <View>
-            <Text>Data about Washington.</Text>
+            <Text>Data about {route.params.state_name}</Text>
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+    
+})
 
 export default StateDataScreen

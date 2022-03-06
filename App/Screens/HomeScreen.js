@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { useState } from 'react'
-import { View, Text, Button } from 'react-native'
+import { View, Button, StyleSheet } from 'react-native'
 import { placeholders } from '../Constants/lang'
 import { Input } from 'react-native-elements'
 
@@ -14,14 +14,24 @@ const HomeScreen = ({ navigation }) => {
                     setState(text)
                 }}
                 placeholder={placeholders.enter_state}
+                style={styles.input}
             />
-            <Text>Hello</Text>
             <Button
-                title="TestBtn"
-                onPress={() => navigation.navigate('State Data')}
+                title="Search"
+                onPress={() => navigation.navigate('State Data', {state_name: state})}
+                style={styles.button}
             />
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+    input: {
+
+    },
+    button: {
+        
+    }
+})
 
 export default HomeScreen
