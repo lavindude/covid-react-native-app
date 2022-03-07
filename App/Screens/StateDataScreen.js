@@ -4,7 +4,7 @@ import { View, Text, StyleSheet } from 'react-native'
 const StateDataScreen = ({ navigation, route }) => {
     return (
         <View>
-            <Text>Data about {route.params.state_name}</Text>
+            <Text>Data about {route.params.stateName}</Text>
         </View>
     )
 }

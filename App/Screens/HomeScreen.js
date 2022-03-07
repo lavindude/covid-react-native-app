@@ -1,9 +1,8 @@
 import * as React from 'react'
 import { useState, useEffect } from 'react'
-import { Text, View, Button, StyleSheet, FlatList } from 'react-native'
+import { Text, View, Button, StyleSheet, FlatList, TouchableOpacity } from 'react-native'
 import { placeholders } from '../Constants/lang'
 import { Input } from 'react-native-elements'
-import StateComponent from '../Components/StateComponent'
 
 const HomeScreen = ({ navigation }) => {
     const [state, setState] = useState('')
@@ -28,6 +27,29 @@ const HomeScreen = ({ navigation }) => {
         getData();
     }, [])
 
+    const StateComponent = (data) => {
+        const sendData = {
+            stateName: data.item.state,
+            cases: data.item.actuals.cases,
+            deaths: data.item.actuals.deaths,
+            newCases: data.item.actuals.newCases,
+            newDeaths: data.item.actuals.newDeaths,
+            population: data.item.population
+        }
+    
+        return (
+            <View style={styles.info_box}>
+                <TouchableOpacity
+                    onPress={() => navigation.navigate('State Data', sendData)}  
+                >
+                    <Text>{data.item.state}</Text>
+                    <Text>{data.item.actuals.cases}</Text>
+                    <Text>{data.item.actuals.deaths}</Text>
+                </TouchableOpacity>
+            </View>
+        )
+    }
+
     return (
         <View>
             <Input
@@ -43,7 +65,7 @@ const HomeScreen = ({ navigation }) => {
                 style={styles.button}
             />
             {isLoading ? <Text>Waiting</Text> : (
-                <FlatList data={data} renderItem={StateComponent} />
+                <FlatList data={data} renderItem={StateComponent}/>
             )}
         </View>
     )
@@ -55,6 +77,9 @@ const styles = StyleSheet.create({
     },
     button: {
         
+    },
+    info_box: {
+
     }
 })
 
