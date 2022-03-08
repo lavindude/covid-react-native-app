@@ -1,3 +1,5 @@
+// Lavindu Devadithya
+
 import * as React from 'react'
 import { View, Text, StyleSheet, Alert } from 'react-native'
 import { useState, useEffect } from 'react'
@@ -28,6 +30,7 @@ const StateDataScreen = ({ navigation, route }) => {
                 )
 
                 navigation.navigate('Home')
+                //scroll view is never rendered
             }
             finally {
                 setLoading(false)
