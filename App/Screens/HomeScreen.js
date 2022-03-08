@@ -42,9 +42,9 @@ const HomeScreen = ({ navigation }) => {
                 <TouchableOpacity
                     onPress={() => navigation.navigate('State Data', sendData)}  
                 >
-                    <Text>{data.item.state}</Text>
-                    <Text>{data.item.actuals.cases}</Text>
-                    <Text>{data.item.actuals.deaths}</Text>
+                    <Text style={styles.title}>{data.item.state}</Text>
+                    <Text>Cases: {data.item.actuals.cases}</Text>
+                    <Text>Deaths: {data.item.actuals.deaths}</Text>
                 </TouchableOpacity>
             </View>
         )
@@ -61,17 +61,21 @@ const HomeScreen = ({ navigation }) => {
             />
             <Button
                 title="Search"
-                onPress={() => navigation.navigate('State Data', {stateName: state})}
+                onPress={() => navigation.navigate('State Data', {stateName: state.toUpperCase()})}
                 style={styles.button}
             />
             {isLoading ? <Text>Waiting</Text> : (
-                <FlatList data={data} renderItem={StateComponent}/>
+                <FlatList data={data} renderItem={StateComponent} style={styles.list}/>
             )}
         </View>
     )
 }
 
 const styles = StyleSheet.create({
+    title: {
+        fontSize: 22,
+        fontWeight: 'bold'
+    },
     input: {
 
     },
@@ -79,7 +83,8 @@ const styles = StyleSheet.create({
         
     },
     info_box: {
-
+        borderWidth: 1,
+        borderColor: '#000000'
     }
 })
 

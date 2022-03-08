@@ -1,9 +1,10 @@
 import * as React from 'react'
 import { View, Text, StyleSheet, Alert } from 'react-native'
 import { useState, useEffect } from 'react'
+import { ProgressBar } from 'react-native-paper'
 
 const StateDataScreen = ({ navigation, route }) => {
-    //if coming from search
+    //if coming from search (in other words only 1 argument)
     if (Object.keys(route.params).length === 1) {
         const [isLoading, setLoading] = useState(true) //might be able to delete this
         const [data, setData] = useState({})
@@ -37,11 +38,17 @@ const StateDataScreen = ({ navigation, route }) => {
             getData()
         }, [])
 
+        const renderProgressBar = () => {
+            return (
+                <ProgressBar progress={0.5} color='#FF0F00' />
+            )
+        }
+
         return (
             <View>
-                {isLoading ? <Text>Waiting</Text> : (
+                {isLoading ? renderProgressBar() : (
                     <View>
-                        <Text>Data about {route.params.stateName}</Text>
+                        <Text style={styles.title}>Data about {route.params.stateName}</Text>
                         <Text>Cases: {data.actuals.cases}</Text>
                         <Text>Deaths: {data.actuals.deaths}</Text>
                         <Text>New cases: {data.actuals.newCases}</Text>
@@ -56,7 +63,7 @@ const StateDataScreen = ({ navigation, route }) => {
     else {
         return (
             <View>
-                <Text>Data about {route.params.stateName}</Text>
+                <Text style={styles.title}>Data about {route.params.stateName}</Text>
                 <Text>Cases: {route.params.cases}</Text>
                 <Text>Deaths: {route.params.deaths}</Text>
                 <Text>New cases: {route.params.newCases}</Text>
@@ -68,7 +75,10 @@ const StateDataScreen = ({ navigation, route }) => {
 }
 
 const styles = StyleSheet.create({
-    
+    title: {
+        fontSize: 22,
+        fontWeight: 'bold'
+    }
 })
 
 export default StateDataScreen
