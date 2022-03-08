@@ -61,7 +61,7 @@ const HomeScreen = ({ navigation }) => {
             />
             <Button
                 title="Search"
-                onPress={() => navigation.navigate('State Data', {state_name: state})}
+                onPress={() => navigation.navigate('State Data', {stateName: state})}
                 style={styles.button}
             />
             {isLoading ? <Text>Waiting</Text> : (
