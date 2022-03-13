@@ -6,6 +6,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 import HomeScreen from './App/Screens/HomeScreen'
 import StateDataScreen from './App/Screens/StateDataScreen'
+import { strings } from './App/Constants/lang'
 
 const Stack = createNativeStackNavigator()
 
@@ -16,12 +17,12 @@ const App = () => {
         <Stack.Screen
           name="Home"
           component={HomeScreen}
-          options={{title: 'COVID Info'}}
+          options={{title: strings.home_title}}
         />
         <Stack.Screen
           name="State Data"
           component={StateDataScreen}
-          options={{title: 'State Data'}}
+          options={{title: strings.state_title}}
         />
       </Stack.Navigator>
     </NavigationContainer>
